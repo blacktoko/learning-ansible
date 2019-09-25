@@ -13,7 +13,7 @@
       service: name=vsftpd enabled=true started=true
     - name: create readme file
       copy:
-        content: "Welcome to my ftp server"
+        content: "Welcome to my ftp server\n"
         dest: /var/ftp/pub/README
         force: no
         mode: 0444
