@@ -8,9 +8,9 @@
   become_user: root
   tasks:
     - name: install vsftpd
-      yum: name=vstpd
+      yum: name=vsftpd
     - name: enable vsftpd
-      service: name=vstpd enabled=true
+      service: name=vsftpd enabled=true
     - name: create readme file
       copy:
         content: "Welcome to my ftp server"
