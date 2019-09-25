@@ -9,8 +9,8 @@
   tasks:
     - name: install vsftpd
       yum: name=vsftpd
-    - name: enable vsftpd
-      service: name=vsftpd enabled=true
+    - name: enable and start vsftpd
+      service: name=vsftpd enabled=true started=true
     - name: create readme file
       copy:
         content: "Welcome to my ftp server"
