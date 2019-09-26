@@ -1,0 +1,31 @@
+---
+# Playbook to install and enable the httpd service
+- name: httpd playbook
+  hosts: node.example.com
+  user: ansible
+  become: yes
+  become_method: sudo
+  become_user: root
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+    - name: enable and start httpd
+      service:
+        name: httpd
+        enabled: true
+        state: started
+    - name: webserver file
+      copy:
+        content: "Welcome to my web server\n"
+        dest: /var/www/html/index.html
+        force: no
+        mode: 0444
+    - name: Open port 80 in the firewall
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: 80
+        jump: ACCEPT
+        action: insert
+...
