@@ -4,7 +4,9 @@ all:
     controller.example.com
   children:
     lamp:
-      node2.example.com
+      hosts:
+        node2.example.com
     file:
-      node1.example.com
+      hosts:
+        node1.example.com
 ...
