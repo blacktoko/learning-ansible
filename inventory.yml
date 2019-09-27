@@ -1,3 +1,9 @@
-[all]
-controller.example.com
-node.example.com
+all:
+  hosts:
+    controller.example.com
+  children:
+    webservers:
+      node1.example.com
+    ftpservers:
+      node2.example.com
+
