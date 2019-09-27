@@ -1,0 +1,10 @@
+---
+all:
+  hosts:
+    controller.example.com
+  children:
+    lamp:
+      node2.example.com
+    file:
+      node1.example.com
+...
