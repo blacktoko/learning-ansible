@@ -9,12 +9,12 @@
 - name: start samba server
   service:
     name: "{{ ansible_local.custom.services.smb_service }}"
-    state: started
     enabled: true
+    state: started
 
 - name: start the ftp service
   service:
     name: "{{ ansible_local.custom.services.ftp_service }}"
-    state: started
     enabled: true
+    state: started
 ...
