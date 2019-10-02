@@ -1,0 +1,4 @@
+---
+web_root: /var/www/html
+ftp_foor: /var/ftp
+...
