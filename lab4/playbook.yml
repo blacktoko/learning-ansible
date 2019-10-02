@@ -21,11 +21,11 @@
       include: tasks/lamp.yml
 
     - name: open the port for the web server
-        iptables:
-          chain: INPUT
-          protocol: tcp
-          destination_port: '80'
-          jump: ACCEPT
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: '80'
+        jump: ACCEPT
 
     - name: create index.html
       copy:
@@ -41,8 +41,8 @@
       include: tasks/file.yml
 
     - name: open the port for the ftp service
-         iptables:
-          chain: INPUT
-          protocol: tcp
-          destination_port: '22'
-          jump: ACCEPT
+      iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: '22'
+        jump: ACCEPT
