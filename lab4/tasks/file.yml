@@ -7,13 +7,13 @@
     state: latest
 
 - name: start samba server
-  services:
+  service:
     name: "{{ ansible_local.custom.services.smb_service }}"
     state: started
     enabled: true
 
 - name: start the ftp service
-  services:
+  service:
     name: "{{ ansible_local.custom.services.ftp_service }}"
     state: started
     enabled: true
