@@ -8,9 +8,8 @@
   tasks:
     - name: install the firewall and services
       yum:
-        name: "{{ item }}"
+        name: "{{ firewall }}"
         state: latest
-      with_items: "{{ firewall }}"
 
 - hosts: lamp
   tasks:
