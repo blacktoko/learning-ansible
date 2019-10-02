@@ -28,7 +28,7 @@
 
     - name: create index.html
       copy:
-        content: "{{ anbible_fqdn }}({{ ansible_default_ipv4.address }}) managed by ansible\n"
+        content: "{{ ansible_fqdn }}({{ ansible_default_ipv4.address }}) managed by ansible\n"
         dest: "{{ web_root }}/index.html"
 
 - hosts: file
