@@ -1,3 +1,4 @@
 [all]
-192.168.56.101
-192.168.56.100
+master.test
+host1.test
+host2.test

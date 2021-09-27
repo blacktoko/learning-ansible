@@ -1,9 +1,4 @@
-all:
-  hosts:
-    controller.example.com
-  children:
-    webservers:
-      node1.example.com
-    ftpservers:
-      node2.example.com
-
+[all]
+master.test
+host1.test
+host2.test
