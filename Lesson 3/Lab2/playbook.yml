@@ -1,0 +1,16 @@
+---
+- name: disable networkmanager
+  hosts: host1.test
+  user: ansible
+  become: yes
+  become_method: sudo
+  become_user: root
+  tasks:
+    - name: Change the grub config
+      lineinfile:
+        path: /etc/default/grub
+        regexp: 'GRUB_CMDLINE_LINUX="console=tty0 crashkernel=auto net.ifnames=0 console=ttyS0"'
+        line: 'GRUB_CMDLINE_LINUX="console=tty0 crashkernel=auto net.ifnames=0 console=ttyS0 net.ifnames=0 biosdevname=0"'
+    - name: Write grub configuration file
+      command: grub2-mkconfig -o /etc/default/grub
+      when: grub_config.stat.exists == False
