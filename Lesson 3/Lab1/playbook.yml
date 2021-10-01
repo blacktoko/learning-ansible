@@ -1,7 +1,7 @@
 ---
 # Playbook to install and enable the httpd service
 - name: httpd playbook
-  hosts: host1.test
+  hosts: webservers
   user: ansible
   become: yes
   become_method: sudo
@@ -21,10 +21,13 @@
         dest: /var/www/html/index.html
         force: no
         mode: 0444
-    - name: Open port 80 in the firewall
-      iptables:
-        chain: INPUT
-        protocol: tcp
-        destination_port: '80'
-        jump: ACCEPT
+    - name: FirewallD rules
+      firewalld:
+        permanent: yes
+        immediate: yes
+        service: "{{ item }}"
+        state: enabled
+      with_items:
+       - http
+       - https
 ...

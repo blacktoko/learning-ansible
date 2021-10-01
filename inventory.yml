@@ -1,4 +1,7 @@
-[all]
-master.test
-host1.test
-host2.test
+all:
+  hosts:
+    master.test
+  children:
+    webservers:
+      host1.test
+      host2.test
