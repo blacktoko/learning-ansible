@@ -1,7 +1,7 @@
 ---
 # Playbook to install and enable the httpd service
 - name: httpd playbook
-  hosts: webservers
+  hosts: host1.test
   user: ansible
   become: yes
   become_method: sudo
