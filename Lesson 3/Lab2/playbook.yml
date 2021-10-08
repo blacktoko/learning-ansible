@@ -6,13 +6,13 @@
     - name: Change the grub config
       lineinfile:
         path: /etc/default/grub
-        regexp: 'GRUB_CMDLINE_LINUX="console=tty0 crashkernel=auto net.ifnames=0 console=ttyS0"'
-        line: 'GRUB_CMDLINE_LINUX="console=tty0 crashkernel=auto net.ifnames=0 console=ttyS0 net.ifnames=0 biosdevname=0"'
+        regexp: '^GRUB_CMDLINE_LINUX='
+        line: 'GRUB_CMDLINE_LINUX="console=tty0 crashkernel=auto net.ifnames=0 biosdevname=0"'
 
     - name: Check to see if grub has been configured
-      stat: path=/etc/default/grub
+      stat: path=/boot/grub2/grub.cfg
       register: grub_config
 
     - name: Write grub configuration file
-      command: grub2-mkconfig -o /etc/default/grub
+      command: grub2-mkconfig -o /boot/grub2/grub.cfg
       when: not grub_config.stat.exists
