@@ -1,11 +1,7 @@
 ---
 # Playbook to install and enable the httpd service
 - name: httpd playbook
-  hosts: webservers
-  user: ansible
-  become: yes
-  become_method: sudo
-  become_user: root
+  hosts: host1.test
   tasks:
     - name: install httpd
       yum:
@@ -19,15 +15,14 @@
       copy:
         content: "Welcome to my web server\n"
         dest: /var/www/html/index.html
-        force: no
+        force: false
         mode: 0444
     - name: FirewallD rules
       firewalld:
-        permanent: yes
-        immediate: yes
+        permanent: true
+        immediate: true
         service: "{{ item }}"
         state: enabled
       with_items:
        - http
        - https
-...
