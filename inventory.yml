@@ -1,9 +1,7 @@
 ---
  all:
-  hosts:
-    master.test
   children:
     webservers:
       hosts:
-        host1.test
-        host2.test
+        host1.test:
+        host2.test:
