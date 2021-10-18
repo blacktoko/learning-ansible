@@ -4,4 +4,6 @@ all:
     webservers:
       hosts:
         host1.test:
+    fileservers:
+      hosts:
         host2.test:

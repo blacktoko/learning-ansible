@@ -1,0 +1,50 @@
+---
+- hosts: webservers
+  tasks:
+    - name: include the variable file
+      include_vars: vars/lamp.yml
+
+    - name: include the tasks
+      include: tasks/lamp.yml
+
+    - name: IPtables port 80
+      ansible.builtin.iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: "80"
+        jump: ACCEPT
+
+    - name: IPtables port 443
+      ansible.builtin.iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: "443"
+        jump: ACCEPT
+
+    - name: Create index.html
+      copy:
+        content: "{{ ansible_fqdn }} ({{ ansible_default_ipv4.address }}) managed by Ansible\n"
+        dest: "{{ web_root }}/index.html"
+        mode: 0644
+
+- hosts: fileservers
+  tasks:
+    - name: include the variable file
+      include_vars: vars/file.yml
+
+    - name: include the tasks
+      include: tasks/file.yml
+
+    - name: open the port of the ftp service
+      ansible.builtin.iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: "22"
+        jump: ACCEPT
+
+    - name: open the port of the smb service
+      ansible.builtin.iptables:
+        chain: INPUT
+        protocol: tcp
+        destination_port: "445"
+        jump: ACCEPT
