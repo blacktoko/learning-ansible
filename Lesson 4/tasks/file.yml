@@ -1,0 +1,19 @@
+---
+- name: Install and start the file servers
+  yum:
+    name:
+      - "{{ ansible_local.custom.packages.smb_package }}"
+      - "{{ ansible_local.custom.packages.ftp_package }}"
+    state: present
+
+- name: start samba server
+  service:
+    name: "{{ ansible_local.custom.services.smb_service }}"
+    state: started
+    enabled: true
+
+- name: start ftp server
+  service:
+    name: "{{ ansible_local.custom.services.ftp_service }}"
+    state: started
+    enabled: true
