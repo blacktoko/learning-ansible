@@ -1,0 +1,24 @@
+---
+- hosts: webservers
+  tasks:
+    - block:
+      - include: install_packages.yml
+        vars:
+          memory: 256
+          web_package: httpd
+          ssl_package: mod_ssl
+          web_service: httpd
+      - include: configure_web.yml
+        vars:
+          https_uri: http://control.ansible.local/lab5//https.conf
+          ssl_uri: http://control.ansible.local/lab5/ssl.tar.gz
+      - include: configure_firewall.yml
+        vars:
+          fw_package: firewalld
+          fw_service: firewalld
+        tags: production
+
+    - name: restart web
+      service:
+        name: "{{ web_service }}"
+        state: restarted
